@@ -1,6 +1,5 @@
 <script>
 	import { setContext, onMount, afterUpdate } from 'svelte'
-
 	// Components
 	import Navbar from './Navbar.svelte'
 	import ExpensesList from './ExpensesList.svelte'

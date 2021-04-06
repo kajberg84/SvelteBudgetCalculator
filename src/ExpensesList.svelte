@@ -2,6 +2,7 @@
 import SectionTitle from './Title.svelte';
 import Expense from './Expense.svelte';
 import { fly } from 'svelte/transition';
+import { flip } from 'svelte/animate';
 export let expenses =  [];
 
 </script>
@@ -16,9 +17,12 @@ export let expenses =  [];
 <section>
 <SectionTitle title="expense list" />
 <ul>
-  {#each expenses as expense, index}
-  <!-- Om man ej skickar med något på on:delete. alltså on:delete= {} så skickar man dispatch forward -->
-  <div transition:fly={{x:200, delay: index*300}}>
+    <!-- Om man ej skickar med något på on:delete. alltså on:delete= {} så skickar man dispatch forward -->
+  {#each expenses as expense, index (expense.id)}
+  <div 
+  in:fly={{x:200, delay: index*300}} 
+  out:fly={{x: -200 }}
+  animate:flip>
     <Expense {...expense}/>
   </div>
   {:else}
